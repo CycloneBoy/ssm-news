@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="fragments/layout">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>头条咨询</title>
+</head>
+<body>
+
+    <div layout:fragment="content">
+
+    <h1>牛客网中级项目(头条)主页</h1>
+
+    <p th:text="'Hello! ' + ${name} + ' ,欢迎来到主页测试页面!'">111111</p>
+    <br/>
+    <p>现在时间是:<span th:text="${today}">2017/7/15 22:25</span> </p>
+
+    <p th:href="@{/swagger-ui}" > API文档链接,请访问: http://localhost:8080/swagger-ui.html </p>
+
+    </div>
+</body>
+</html>
