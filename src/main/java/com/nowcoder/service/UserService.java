@@ -11,5 +11,11 @@ public interface UserService {
 
     public Map<String,Object> register(String username,String password);
 
+    public Map<String,Object> login(String username,String password);
+
+    public String addLoginTicket(int userId);
+
     public User getUser(int id);
+
+    public void logout(String ticket);
 }

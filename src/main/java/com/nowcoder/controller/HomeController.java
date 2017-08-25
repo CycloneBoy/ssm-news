@@ -83,6 +83,7 @@ public class HomeController {
     public String index(Model model,
                         @RequestParam(value = "pop",defaultValue = "0") int pop){
         model.addAttribute("vos",getNewsDto(3,0,10));
+        model.addAttribute("user",hostHolder.getUser());
         if(hostHolder.getUser() != null){
             pop = 0;
         }
