@@ -3,12 +3,17 @@ package com.nowcoder.service.impl;
 import com.nowcoder.dao.NewsDAO;
 import com.nowcoder.model.News;
 import com.nowcoder.service.NewsService;
+import com.nowcoder.util.ToutiaoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by CycloneBoy on 2017/8/20.
@@ -37,7 +42,19 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public String saveImage(MultipartFile file) throws IOException {
-        return null;
+        //xxx. = a.jpg
+        int dotPos = file.getOriginalFilename().lastIndexOf(".");
+        if(dotPos < 0){
+            return  null;
+        }
+        String fileExt = file.getOriginalFilename().substring(dotPos + 1).toLowerCase();
+        if(!ToutiaoUtil.isFileAllowed(fileExt)){
+            return null;
+        }
+        String fileName = UUID.randomUUID().toString().replaceAll("-","") + "."+fileExt;
+        Files.copy(file.getInputStream(),new File(ToutiaoUtil.IMAGE_DIR+fileName).toPath(),
+                StandardCopyOption.REPLACE_EXISTING);
+        return ToutiaoUtil.TOUTIAO_DOMAIN+"image?name=" + fileName;
     }
 
     @Override

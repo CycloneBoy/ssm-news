@@ -1,5 +1,6 @@
 package com.nowcoder.dto;
 
+import com.nowcoder.model.Comment;
 import com.nowcoder.model.News;
 import com.nowcoder.model.User;
 
@@ -35,4 +36,5 @@ public class ViewResult {
     public void setLike(int like) {
         this.like = like;
     }
+
 }

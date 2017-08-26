@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="fragments/layout">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>头条资讯-图片上传页面</title>
+    <link rel="stylesheet" th:href="@{styles/signin.css}"/>
+
+    <style type="text/css">
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div layout:fragment="content">
+        <div class="container">
+            <div class="starter-template">
+                <h2>发布资讯</h2>
+                <form class="form-signin" role="form" enctype="multipart/form-data"  name="uploadfrom"
+                      th:action="@{/user/addNews/}"
+                      action="/user/addNews/"
+                      method="post">
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="title" id= "title" value=""
+                                   placeholder="请输入资讯标题"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="link" class="col-sm-2 control-label">链接</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="link" id="link" placeholder="请输入资讯链接"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image" class="col-sm-2 control-label">资讯图片</label>
+                        <div class="col-sm-10">
+                            <input type="file" class="form-control" name="image" id="image" value="" placeholder="上传图片"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" id="submit" value="提交" class="btn btn-primary" name="上传"/>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>

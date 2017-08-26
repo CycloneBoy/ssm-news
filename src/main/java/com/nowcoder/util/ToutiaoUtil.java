@@ -13,6 +13,20 @@ import java.util.Map;
 public class ToutiaoUtil {
     private static  final Logger logger = LoggerFactory.getLogger(ToutiaoUtil.class);
 
+    public static String TOUTIAO_ALIYUN_DOMAIN = "http://ssm-news.oss-cn-beijing.aliyuncs.com/";
+    public static String TOUTIAO_DOMAIN = "http://locallhost:8080/";
+    public static String IMAGE_DIR = "D:\\upload\\";
+    public static String[] IMAGE_FILE_EXT = new String[]{"png","bmp","jpg","jpeg"};
+
+    public static boolean isFileAllowed(String fileExt){
+        for(String ext : IMAGE_FILE_EXT){
+            if(ext.equals(fileExt)){
+                return  true;
+            }
+        }
+        return  false;
+    }
+
     public static String getJSONString(int code,String msg){
         JSONObject json = new JSONObject();
         json.put("code",code);

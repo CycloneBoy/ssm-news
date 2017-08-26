@@ -16,32 +16,33 @@
                         <h3 class="date">
                             <i class="fa icon-calendar"></i>
                             头条资讯&nbsp;
-                            <span th:text="${#calendars.format(vo.news.createDate,'yyyy/mm/dd hh:mm:ss')}">头条资讯&nbsp;</span>
+                            <span th:text="${#calendars.format(vo.news.createDate,'yyyy/MM/dd HH:mm:ss')}">头条资讯&nbsp;
+                            </span>
                         </h3>
                         <div class="posts">
                             <div class="post">
-                                <div class="votebar" th:if="${vo.like &gt; 0}">
+                                <div class="votebar" th:if="${vo.like ge 0 }">
                                     <button class="click-like up pressed"  title="赞同" th:id ="${vo.news.id}">
                                         <i class="vote-arrow"></i>
                                         <span class="count" th:text="${vo.news.likeCount}">${vo.news.likeCount}</span>
                                     </button>
-                                </div>
-                                <div class="votebar" th:unless="${vo.like &gt; 0}">
-                                    <button class="click-like up"  title="赞同" th:id ="${vo.news.id}"><i
-                                            class="vote-arrow"></i><span class="count" th:text="${vo.news.likeCount}">${vo.news.likeCount}</span>
-                                    </button>
-                                </div>
-                                <div class="votebar" th:if="${vo.like &lt; 0}">
-                                    <button class="click-like down pressed"  title="反对" th:id ="${vo.news.id}"><i
-                                            class="vote-arrow"></i></button>
-                                </div>
-                                <div class="votebar" th:unless="${vo.like &lt; 0}">
                                     <button class="click-like down "  title="反对" th:id ="${vo.news.id}"><i
                                             class="vote-arrow"></i></button>
                                 </div>
+                                <div class="votebar" th:unless="${vo.like ge 0}">
+                                    <button class="click-like up"  title="赞同" th:id ="${vo.news.id}"><i
+                                            class="vote-arrow"></i><span class="count" th:text="${vo.news.likeCount}">${vo.news.likeCount}</span>
+                                    </button>
+                                    <button class="click-like down pressed"  title="反对" th:id ="${vo.news.id}">
+                                        <i class="vote-arrow"></i>
+                                    </button>
+                                </div>
+
                                 <div class="content">
                                     <div >
-                                        <img class="content-img" src="${vo.news.image}" th:src="${vo.news.image }"
+                                        <img class="content-img"
+                                             src="${vo.news.image}?x-oss-process=image/resize,m_mfit,h_100,w_100"
+                                             th:src="${vo.news.image }+ '?x-oss-process=image/resize,m_mfit,h_100,w_100'"
                                              alt=""/>
                                     </div>
                                     <div class="content-main">
