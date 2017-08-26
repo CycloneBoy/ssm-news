@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="fragments/layout">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>头条资讯-站内信详情</title>
+</head>
+<body>
+
+    <div layout:fragment="content">
+        <div id="main">
+            <div class="container">
+                <ul class="letter-chatlist" th:each="msg :${messages}">
+                    <li id="msg-item-4009580">
+                        <a class="list-head" th:href="@{'/user/' + ${msg.user.id}}">
+                            <img alt="头像" src="$!{msg.headUrl}" th:src="${msg.user.headUrl}"/>
+                        </a>
+                        <div class="tooltip fade right in">
+                            <div class="tooltip-arrow"></div>
+                            <div class="tooltip-inner letter-chat clearfix">
+                                <div class="letter-info">
+                                    <p class="letter-time"
+                                       th:text="${#calendars.format(msg.message.createdDate,'yyyy-MM-dd HH:mm:ss')}">
+                                        $date.format('yyyy-MM-dd HH:mm:ss',
+                                        $!{msg.message.createdDate})</p>
+                                    <a href="" id="del-link" name="4009580"
+                                       th:href="@{'/msg/delete/' + ${msg.message.id} }" th:text="删除">删除
+                                    </a>
+                                </div>
+                                <p class="chat-content" th:text="${msg.message.content}">
+                                    $!{msg.message.content}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

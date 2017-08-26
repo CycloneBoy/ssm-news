@@ -27,6 +27,12 @@ public class ToutiaoUtil {
         return  false;
     }
 
+    public static String getJSONString(int code){
+        JSONObject json = new JSONObject();
+        json.put("code",code);
+        return json.toJSONString();
+    }
+
     public static String getJSONString(int code,String msg){
         JSONObject json = new JSONObject();
         json.put("code",code);

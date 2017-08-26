@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="user-info">
                                     <div class="user-avatar">
-                                        <a href="/user/$!{vo.user.id}/" th:href="@{/user/${vo.user.id}}">
+                                        <a href="/user/$!{vo.user.id}/" th:href="@{'/user/' + ${vo.user.id}}">
                                             <img width="32" class="img-circle" src="$!{vo.user.headUrl}" th:src="${vo.user.headUrl}"/>
                                         </a>
                                     </div>
