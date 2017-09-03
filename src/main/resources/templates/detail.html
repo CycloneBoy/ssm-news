@@ -21,7 +21,8 @@
             <div class="container">
                 <div class="post detail">
 
-                    <div class="votebar">
+                    <div class="votebar" th:if="${like ge 0 }" >
+
                         <button class="click-like up pressed" aria-pressed="false" title="赞同">
                             <i class="vote-arrow"></i>
                             <span
@@ -29,6 +30,18 @@
                             </span>
                         </button>
                         <button class="click-dislike down" aria-pressed="true" title="反对">
+                            <i class="vote-arrow"></i>
+                        </button>
+                    </div>
+
+                    <div class="votebar" th:unless="${like ge 0 }" >
+                        <button class="click-like up " aria-pressed="false" title="赞同">
+                            <i class="vote-arrow"></i>
+                            <span
+                                    class="count" th:text="${news.likeCount}">$!{news.likeCount}
+                            </span>
+                        </button>
+                        <button class="click-dislike down pressed" aria-pressed="true" title="反对">
                             <i class="vote-arrow"></i>
                         </button>
                     </div>

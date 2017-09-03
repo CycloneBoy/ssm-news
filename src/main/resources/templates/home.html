@@ -22,18 +22,29 @@
                         <div class="posts">
                             <div class="post">
                                 <div class="votebar" th:if="${vo.like ge 0 }">
-                                    <button class="click-like up pressed"  title="赞同" th:id ="${vo.news.id}">
+                                    <a href="#" th:href="@{'/like?newsId=' + ${vo.news.id}}" class="btn btn-primary btn-lg" role="button">赞同</a>
+                                    <a href="#" th:href="@{'/dislike?newsId=' + ${vo.news.id}}"
+                                       class="btn btn-primary btn-lg" role="button">反对</a>
+                                    <button class="click-like up pressed"  title="赞同" th:id ="${vo.news.id}" data-th-id="${vo.news.id}"
+                                            th:href="@{'/like?newsId=' + ${vo.news.id}}" >
                                         <i class="vote-arrow"></i>
                                         <span class="count" th:text="${vo.news.likeCount}">${vo.news.likeCount}</span>
                                     </button>
-                                    <button class="click-like down "  title="反对" th:id ="${vo.news.id}"><i
+                                    <button class="click-like down "  title="反对" th:id ="${vo.news.id}" data-th-id="${vo.news.id}"
+                                            th:href="@{'/dislike?newsId=' + ${vo.news.id}}"><i
                                             class="vote-arrow"></i></button>
                                 </div>
                                 <div class="votebar" th:unless="${vo.like ge 0}">
-                                    <button class="click-like up"  title="赞同" th:id ="${vo.news.id}"><i
+                                    <a href="#" th:href="@{'/like?newsId=' + ${vo.news.id}}" class="btn btn-primary btn-lg" role="button">赞同</a>
+                                    <a href="#" th:href="@{'/dislike?newsId=' + ${vo.news.id}}"
+                                       class="btn btn-primary btn-lg" role="button">反对</a>
+
+                                    <button class="click-like up"  title="赞同" th:id ="${vo.news.id}" data-th-id="${vo.news.id}"
+                                            th:href="@{'/like?newsId=' + ${vo.news.id}}"><i
                                             class="vote-arrow"></i><span class="count" th:text="${vo.news.likeCount}">${vo.news.likeCount}</span>
                                     </button>
-                                    <button class="click-like down pressed"  title="反对" th:id ="${vo.news.id}">
+                                    <button class="click-like down pressed"  title="反对" th:id ="${vo.news.id}" data-th-id="${vo.news.id}"
+                                            th:href="@{'/dislike?newsId=' + ${vo.news.id}}">
                                         <i class="vote-arrow"></i>
                                     </button>
                                 </div>

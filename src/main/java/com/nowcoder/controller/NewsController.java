@@ -7,10 +7,7 @@ import com.nowcoder.model.Comment;
 import com.nowcoder.model.EntityType;
 import com.nowcoder.model.HostHolder;
 import com.nowcoder.model.News;
-import com.nowcoder.service.AliyunService;
-import com.nowcoder.service.CommentService;
-import com.nowcoder.service.NewsService;
-import com.nowcoder.service.UserService;
+import com.nowcoder.service.*;
 import com.nowcoder.util.ToutiaoUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +48,9 @@ public class NewsController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private LikeService likeService;
 
     @RequestMapping(value = "/image",method = {RequestMethod.GET})
     @ResponseBody
@@ -132,6 +132,13 @@ public class NewsController {
             News news = newsService.getById(newsId);
 
             if(news != null){
+                int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0 ;
+                if(localUserId != 0){
+                    model.addAttribute("like",likeService.getLikeStatus(localUserId,EntityType.ENTITY_NEWS,news
+                            .getId()));
+                }else {
+                    model.addAttribute("like",0);
+                }
                 List<Comment> comments = commentService.getCommentsByEntity(news.getId(), EntityType.ENTITY_NEWS);
                 List<CommentVO> commentVOs = new ArrayList<>();
                 for(Comment comment : comments){

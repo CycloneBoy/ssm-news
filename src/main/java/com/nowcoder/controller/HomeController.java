@@ -2,10 +2,8 @@ package com.nowcoder.controller;
 
 import com.nowcoder.dao.NewsDAO;
 import com.nowcoder.dto.ViewResult;
-import com.nowcoder.model.HostHolder;
-import com.nowcoder.model.News;
-import com.nowcoder.model.User;
-import com.nowcoder.model.ViewObject;
+import com.nowcoder.model.*;
+import com.nowcoder.service.LikeService;
 import com.nowcoder.service.NewsService;
 import com.nowcoder.service.UserService;
 import com.nowcoder.service.impl.UserServiceImpl;
@@ -43,6 +41,9 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private LikeService likeService;
+
     private List<ViewObject> getNews(int userId, int offset, int limit){
         List<News> newsList = newsService.getLatestNews(userId,offset,limit);
         int localUserId = hostHolder.getUser() != null ? hostHolder.getUser().getId() : 0;
@@ -70,7 +71,7 @@ public class HomeController {
             vo.setNews(news);
             vo.setUser(userService.getUser(news.getUserId()));
             if(localUserId != 0){
-                vo.setLike(news.getLikeCount());
+                vo.setLike(likeService.getLikeStatus(localUserId, EntityType.ENTITY_NEWS,news.getId()));
             }else {
                 vo.setLike(0);
             }
