@@ -22,4 +22,6 @@ public interface NewsService {
     public int updateCommentCount(int id,int count);
 
     public int updateLikeCount(int id,int count);
+
+    public List<News> getLatestNews(int offset,int limit);
 }

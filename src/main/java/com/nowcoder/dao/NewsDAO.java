@@ -31,4 +31,10 @@ public interface NewsDAO {
             "where user_id=#{userId} order by create_date desc limit #{offset}, " +
             "#{limit}" })
     List<News> selectByUserIdAndOffset(@Param("userId") int userId, @Param("offset") int offset, @Param("limit") int limit);
+
+    @Select({"select ",SELECT_FIELDS," from ",TABLE_NAME,
+            " order by create_date desc limit #{offset}, " +
+                    "#{limit}" })
+    List<News> selectNewsByOffset( @Param("offset") int offset, @Param("limit") int
+            limit);
 }

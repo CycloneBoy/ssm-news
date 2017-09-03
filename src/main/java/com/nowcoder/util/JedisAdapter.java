@@ -153,6 +153,7 @@ public class JedisAdapter implements InitializingBean{
         Jedis jedis = null;
         try{
             jedis = pool.getResource();
+            System.out.println("lpush : " + key + " " + value);
             return jedis.lpush(key,value);
         }catch (Exception e){
             logger.error("发生异常" + e.getMessage());
@@ -168,6 +169,7 @@ public class JedisAdapter implements InitializingBean{
         Jedis jedis = null;
         try{
             jedis = pool.getResource();
+            System.out.println("brpop : " + key );
             return jedis.brpop(timeout,key);
         }catch (Exception e){
             logger.error("发生异常" + e.getMessage());

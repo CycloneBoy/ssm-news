@@ -95,7 +95,7 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/user/addNews/",method = {RequestMethod.POST})
-    @ResponseBody
+   // @ResponseBody
     public String addNewsPost(@RequestParam("image")MultipartFile image,
                               @RequestParam("title") String title,
                               @RequestParam("link") String link){

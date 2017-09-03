@@ -22,7 +22,8 @@
                 <div class="post detail">
 
                     <div class="votebar" th:if="${like ge 0 }" >
-
+                        <a href="#" th:href="@{'/like?newsId=' + ${news.id}}" class="btn btn-primary btn-lg" role="button">赞同</a>
+                        <a href="#" th:href="@{'/dislike?newsId=' + ${news.id}}"/>
                         <button class="click-like up pressed" aria-pressed="false" title="赞同">
                             <i class="vote-arrow"></i>
                             <span
@@ -35,6 +36,8 @@
                     </div>
 
                     <div class="votebar" th:unless="${like ge 0 }" >
+                        <a href="#" th:href="@{'/like?newsId=' + ${news.id}}" class="btn btn-primary btn-lg" role="button">赞同</a>
+                        <a href="#" th:href="@{'/dislike?newsId=' + ${news.id}}"/>
                         <button class="click-like up " aria-pressed="false" title="赞同">
                             <i class="vote-arrow"></i>
                             <span

@@ -66,4 +66,9 @@ public class NewsServiceImpl implements NewsService {
     public int updateLikeCount(int id, int count) {
         return newsDAO.updateLikeCount(id,count);
     }
+
+    @Override
+    public List<News> getLatestNews(int offset, int limit) {
+        return newsDAO.selectNewsByOffset(offset,limit);
+    }
 }

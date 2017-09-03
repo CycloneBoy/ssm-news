@@ -1,5 +1,8 @@
 package com.nowcoder.controller;
 
+import com.nowcoder.async.EventModel;
+import com.nowcoder.async.EventProducer;
+import com.nowcoder.async.EventType;
 import com.nowcoder.model.HostHolder;
 import com.nowcoder.model.User;
 import com.nowcoder.service.UserService;
@@ -7,6 +10,7 @@ import com.nowcoder.util.ToutiaoUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +29,8 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    EventProducer eventProducer;
 
     @RequestMapping(value = {"/reg/"},method = {RequestMethod.GET,RequestMethod.POST})
     //@ResponseBody
@@ -86,6 +92,10 @@ public class LoginController {
                 }
                 response.addCookie(cookie);
                 //return ToutiaoUtil.getJSONString(0,"登录成功");
+                eventProducer.fireEvent(new EventModel(EventType.LOGIN)
+                        .setActorId((int)map.get("userId"))
+                        .setExts("username","牛客")
+                        .setExts("to","534634799@qq.com"));
 
                 return "redirect:/";
             }else{
