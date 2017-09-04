@@ -11,9 +11,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by CycloneBoy on 2017/9/3.
@@ -40,7 +38,12 @@ public class LoginExceptionHandler implements EventHandler{
         messageService.addMessage(message);
         System.out.println("你上次的登录IP异常");
 
-        emailService.sendSimpleMail("534634799@qq.com","头条","你上次的登录IP异常");
+       // emailService.sendSimpleMail("534634799@qq.com","头条","你上次的登录IP异常");
+        Map<String ,Object> map = new HashMap<>();
+        map.put("username","qq1");
+        map.put("text","你上次的登录IP异常");
+        emailService.sendTemplateMail("534634799@qq.com","头条资讯",
+                "email/email",map);
     }
 
     @Override

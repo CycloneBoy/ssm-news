@@ -43,6 +43,6 @@ public interface EmailService {
      * @param content
      * @param attachments
      */
-    public void sendTemplateMail(String sendTo, String title, Map<String, Object> content, List<Pair<String, File>>
-            attachments);
+    public void sendTemplateMail(String sendTo, String title,String template,
+                                 Map<String, Object> content);
 }
